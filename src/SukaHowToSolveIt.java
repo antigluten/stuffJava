@@ -25,6 +25,7 @@ public class SukaHowToSolveIt {
         double[] xSectionOne = parsingDoublePart1(arrayOne, sectionOne);
         double[] ySectionOne = parsingDoublePart2(arrayOne, sectionOne);
         showDouble(xSectionOne,ySectionOne);
+
         double[] xSectionTwo = parsingDoublePart1(arrayTwo, sectionTwo);
         double[] ySectionTwo = parsingDoublePart2(arrayTwo, sectionTwo);
         showDouble(xSectionTwo,ySectionTwo);
@@ -51,9 +52,9 @@ public class SukaHowToSolveIt {
         }
         return coordinates;
     }
-    public static void showDouble(double[] a, double[] b){
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i] + " " + b[i]);
+    public static void showDouble(double[] xOne, double[] yOne){
+        for (int i = 0; i < xOne.length; i++) {
+            System.out.println(xOne[i] + " " + yOne[i]);
         }
     }
 }
