@@ -73,14 +73,14 @@ public class Point {
         return new Point(arrayPoints[iteration].x, arrayPoints[iteration].y, iteration);
     }
 
-    static double[] findThe10NearestToThePoint(Point[] arrayPoints, Point theNearestToCenter) {
+    static int[] findThe10NearestToThePoint(Point[] arrayPoints, Point theNearestToCenter) {
         List<Double> DistancesList = new ArrayList<>();
 
         for (int i = 0; i < arrayPoints.length; i++) {
             DistancesList.add(Point.distance(theNearestToCenter, arrayPoints[i]));
         }
         DistancesList.remove(0.0);
-        double[] findDistance = new double[arrayPoints.length - 1];
+        double[] findDistance;
         double[] distances = new double[arrayPoints.length - 1];
         for (int i = 0; i < distances.length; i++) {
             distances[i] = DistancesList.get(i);
@@ -88,31 +88,26 @@ public class Point {
         findDistance = distances;
         Arrays.sort(distances);
 
-        double[] top10Distances = new double[10];
-        for (int i = 0; i < top10Distances.length; i++) {
-            top10Distances[i] = distances[i];
-        }
-        double[] iterations = new double[10];
-        for (int i = 0; i < top10Distances.length; i++) {
-            for (int j = 0; j < arrayPoints.length; j++) {
-                double distance = Point.distance(theNearestToCenter, arrayPoints[i]);
-                if (top10Distances[i] == distance){
+        int[] iterations = new int[10];
+        for (int i = 0; i < iterations.length; i++) {
+            for (int j = 0; j < arrayPoints.length - 1; j++) {
+                double distance = Point.distance(theNearestToCenter, arrayPoints[j]);
+                if (findDistance[i] == distance){
                     iterations[i] = j;
                 }
             }
         }
         return iterations;
     }
+    static void showPoints(int[] iterations, Point[] arrayPoints) {
+        for (int i = 0; i < iterations.length; i++) {
+            arrayPoints[iterations[i]].showCoordinates();
+        }
+    }
     // найти итерации, чтобы определить точки этих дистанций и составить шаблон
 
     void showIteration() {
         System.out.println(iteration);
-    }
-
-    double[] finder(Point[] arrayPoints) {
-        double[] topNearestDistances = new double[10];
-
-        return topNearestDistances;
     }
 
 }

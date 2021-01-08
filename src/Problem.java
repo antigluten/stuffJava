@@ -53,9 +53,10 @@ public class Problem {
         System.out.println();
         theNearestOne.showIteration();
 
-        double[] top10distances = Point.findThe10NearestToThePoint(arrayPointsSectionOne,theNearestOne);
-        System.out.println(Arrays.toString(top10distances));
+        int[] top10DistancesIterations = Point.findThe10NearestToThePoint(arrayPointsSectionOne,theNearestOne);
+        System.out.println(Arrays.toString(top10DistancesIterations));
 
+        Point.showPoints(top10DistancesIterations, arrayPointsSectionOne);
     }
 
 
