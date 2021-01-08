@@ -42,8 +42,8 @@ public class Point {
     static double distance(Point one, Point two){
         return Math.sqrt(Math.pow(one.x - two.x, 2) + Math.pow(one.y - two.y,2));
     }
-    double distanceOnePoint(Point one){
-        return Math.sqrt(Math.pow(one.x - x, 2) + Math.pow(one.y - y,2));
+    static double distanceOnePoint(Point one){
+        return Math.sqrt(Math.pow(one.x, 2) + Math.pow(one.y,2));
     }
 
     void showDistance(double distance){
@@ -53,11 +53,8 @@ public class Point {
         double max = 100, distance = 0;
         int iteration = 0;
         for (int i = 0; i < arrayPoints.length; i++) {
-            if (i != arrayPoints.length - 1) {
-                distance = distance(arrayPoints[i], arrayPoints[i + 1]);
-                System.out.println(distance);
-            }
-            if (distance < 10){
+            distance = distanceOnePoint(arrayPoints[i]);
+            if (distance < max) {
                 max = distance;
                 iteration = i;
             }
