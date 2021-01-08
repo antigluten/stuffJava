@@ -61,7 +61,7 @@ public class Point {
     }
 
     static Point findTheClosestPointToCenter(Point[] arrayPoints) {
-        double max = 100, distance = 0;
+        double max = 100, distance;
         int iteration = 0;
         for (int i = 0; i < arrayPoints.length; i++) {
             distance = distanceOnePoint(arrayPoints[i]);
@@ -74,24 +74,34 @@ public class Point {
     }
 
     static double[] findThe10NearestToThePoint(Point[] arrayPoints, Point theNearestToCenter) {
-        List<Double> top10DistancesList = new ArrayList<>();
+        List<Double> DistancesList = new ArrayList<>();
 
         for (int i = 0; i < arrayPoints.length; i++) {
-            top10DistancesList.add(Point.distance(theNearestToCenter, arrayPoints[i]));
+            DistancesList.add(Point.distance(theNearestToCenter, arrayPoints[i]));
         }
-        top10DistancesList.remove(0.0);
-
+        DistancesList.remove(0.0);
+        double[] findDistance = new double[arrayPoints.length - 1];
         double[] distances = new double[arrayPoints.length - 1];
         for (int i = 0; i < distances.length; i++) {
-            distances[i] = top10DistancesList.get(i);
+            distances[i] = DistancesList.get(i);
         }
+        findDistance = distances;
         Arrays.sort(distances);
 
         double[] top10Distances = new double[10];
         for (int i = 0; i < top10Distances.length; i++) {
             top10Distances[i] = distances[i];
         }
-        return top10Distances;
+        double[] iterations = new double[10];
+        for (int i = 0; i < top10Distances.length; i++) {
+            for (int j = 0; j < arrayPoints.length; j++) {
+                double distance = Point.distance(theNearestToCenter, arrayPoints[i]);
+                if (top10Distances[i] == distance){
+                    iterations[i] = j;
+                }
+            }
+        }
+        return iterations;
     }
     // найти итерации, чтобы определить точки этих дистанций и составить шаблон
 
