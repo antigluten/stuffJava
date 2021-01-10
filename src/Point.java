@@ -105,4 +105,11 @@ public class Point {
         return topNearestDistances;
     }
 
+    // сдвиг по углу
+    Point movePointByAngle(double xOne, double yOne, double angle) {
+        double xAfter = xOne * Math.cos(angle) + yOne * Math.sin(angle);
+        double yAfter = yOne * Math.cos(angle) - xOne * Math.sin(angle);
+        return new Point(xAfter, yAfter);
+    }
+
 }
