@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class Point {
     private double x;
@@ -61,12 +62,12 @@ public class Point {
     }
 
     static Point findTheClosestPointToCenter(Point[] arrayPoints) {
-        double max = 100, distance;
+        double min = 100, distance;
         int iteration = 0;
         for (int i = 0; i < arrayPoints.length; i++) {
             distance = distanceOnePoint(arrayPoints[i]);
-            if (distance < max) {
-                max = distance;
+            if (distance < min) {
+                min = distance;
                 iteration = i;
             }
         }
@@ -97,6 +98,10 @@ public class Point {
                 }
             }
         }
+        for (int i = 0; i < 10; i++) {
+            System.out.format(Locale.UK, "%.1f", distances[i]);
+            System.out.println();
+        }
         return iterations;
     }
     static void showPoints(int[] iterations, Point[] arrayPoints) {
@@ -108,6 +113,17 @@ public class Point {
 
     void showIteration() {
         System.out.println(iteration);
+    }
+    static Point[] pattern(Point[] arrayPoints, int[] indexes, Point theNearestOne){
+        Point[] pattern = new Point[11];
+        for (int i = 0; i < pattern.length; i++) {
+            if (i == 0){
+                pattern[i] = theNearestOne;
+            } else {
+                pattern[i] = arrayPoints[indexes[i - 1]];
+            }
+        }
+        return pattern;
     }
 
 }

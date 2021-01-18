@@ -34,29 +34,52 @@ public class Problem {
         Point[] arrayPointsSectionOne = new Point[sectionOne];
         for (int i = 0; i < sectionOne; i++) {
             arrayPointsSectionOne[i] = new Point(xSectionOne[i], ySectionOne[i]);
-            arrayPointsSectionOne[i].showCoordinates();
+//            arrayPointsSectionOne[i].showCoordinates();
         }
 
         System.out.println();
 
         //turning x2[] and y2[] into array of points
-//        Point[] arrayPointsSectionTwo = new Point[sectionTwo];
-//        for (int i = 0; i < sectionTwo; i++) {
-//            arrayPointsSectionTwo[i] = new Point(xSectionTwo[i], ySectionTwo[i]);
+        Point[] arrayPointsSectionTwo = new Point[sectionTwo];
+        for (int i = 0; i < sectionTwo; i++) {
+            arrayPointsSectionTwo[i] = new Point(xSectionTwo[i], ySectionTwo[i]);
 //            arrayPointsSectionTwo[i].showCoordinates();
-//        }
+        }
 
-        // find the nearest point
+        // find the nearest point to the first selection
         System.out.println("The Nearest one is: ");
         Point theNearestOne = Point.findTheClosestPointToCenter(arrayPointsSectionOne);
         theNearestOne.showCoordinates();
-        System.out.println();
         theNearestOne.showIteration();
 
         int[] top10DistancesIterations = Point.findThe10NearestToThePoint(arrayPointsSectionOne,theNearestOne);
-        System.out.println(Arrays.toString(top10DistancesIterations));
+//        System.out.println(Arrays.toString(top10DistancesIterations));
 
-        Point.showPoints(top10DistancesIterations, arrayPointsSectionOne);
+//        Point.showPoints(top10DistancesIterations, arrayPointsSectionOne);
+        Point[] pattern = Point.pattern(arrayPointsSectionOne, top10DistancesIterations, theNearestOne);
+
+        System.out.println("Pattern: ");
+        for (int i = 0; i < pattern.length; i++) {
+            pattern[i].showCoordinates();
+        }
+
+        // do the same to the next section
+        System.out.println("section 2:");
+        System.out.println("The Nearest one is: ");
+        Point theNearestOneSection2 = Point.findTheClosestPointToCenter(arrayPointsSectionTwo);
+        theNearestOneSection2.showCoordinates();
+        theNearestOneSection2.showIteration();
+
+        int[] top10DistancesIterationsSection2 = Point.findThe10NearestToThePoint(arrayPointsSectionTwo,theNearestOneSection2);
+//        System.out.println(Arrays.toString(top10DistancesIterationsSection2));
+
+//        Point.showPoints(top10DistancesIterationsSection2, arrayPointsSectionTwo);
+        Point[] patternSection2 = Point.pattern(arrayPointsSectionTwo, top10DistancesIterationsSection2, theNearestOneSection2);
+        System.out.println("Pattern 2: ");
+        for (int i = 0; i < patternSection2.length; i++) {
+            patternSection2[i].showCoordinates();
+        }
+
     }
 
 
